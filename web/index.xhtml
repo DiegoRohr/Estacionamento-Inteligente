@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Usuários</title>
+    </h:head>
+    <h:body>
+    
+        <h1>Usuários</h1>
+        <h:dataTable var="usuario" value="#{usuarioController.listarUsuarios}">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Nome"/>
+                </f:facet>
+                <h:outputText value="#{usuario.nome}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="CPF"/>
+                </f:facet>
+                <h:outputText value="#{usuario.cpf}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="E-mail"/>
+                </f:facet>
+                <h:outputText value="#{usuario.email}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Data de Nascimento"/>
+                </f:facet>
+                <h:outputText value="#{usuario.dataNasc}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Senha"/>
+                </f:facet>
+                <h:outputText value="#{usuario.senha}"/>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Alterar"/>
+                </f:facet>
+                <h:form>
+                    <h:commandButton action="#{usuarioController.prepararAlterarUsuario}" value="Alterar"/>
+                    </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Excluir"/>
+                </f:facet>
+                <h:form>
+                    <h:commandButton action="#{usuarioController.excluirUsuario}" value="Excluir"/>
+                    </h:form>
+            </h:column>
+        </h:dataTable>
+        <br/>
+        <h:form>
+            <h:commandLink value="Novo Usuário" action="#{usuarioController.prepararAdicionarUsuario}"/>
+        </h:form>
+    </h:body>
+</html>
