@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+<title>Gerenciador de Usuários</title>
+</h:head>
+<h:body>
+<h1>Gerenciador de Usuários</h1>
+<h:form>
+Nome: <h:inputText value="#{usuarioController.usuario.nome}"/><br/>
+CPF: <h:inputText value="#{usuarioController.usuario.cpf}"/><br/>
+E-mail: <h:inputText value="#{usuarioController.usuario.email}"/><br/>
+Data de Nascimento:
+<h:inputText value="#{usuarioController.usuario.dataNasc}" a:placeholder="dd/mm/yyyy" >  
+    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3"/>  
+</h:inputText>
+
+Senha: <h:inputText value="#{usuarioController.usuario.senha}"/><br/>
+
+<h:commandButton action="#{usuarioController.adicionarUsuario}" value="Inserir Novo Usuário"/>
+<h:commandButton action="#{usuarioController.alterarUsuario}" value="Alterar Usuário"/>
+<br/>
+<h:commandLink action="index" value="Voltar"/>
+</h:form>
+</h:body>
+</html>
