@@ -84,7 +84,7 @@ public class Usuario implements Serializable {
     }
 
     public String getSenha() throws UnsupportedEncodingException {
-        senha = Desencripta(senha);
+//        senha = Desencripta(senha);
         return senha;
     }
 
