@@ -17,6 +17,7 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 public class Vaga implements Serializable {
+
     @Id
     private String codVaga;
     @Column(columnDefinition = "TINYINT")
@@ -28,8 +29,14 @@ public class Vaga implements Serializable {
 
     public Vaga(String codVaga) {
         this.codVaga = codVaga;
+    }
+
+    public Vaga(String codVaga, boolean utilizada) {
+        this.codVaga = codVaga;
         this.utilizada = utilizada;
     }
+
+   
 
     public String getCodVaga() {
         return codVaga;
@@ -46,8 +53,5 @@ public class Vaga implements Serializable {
     public void setUtilizada(boolean utilizada) {
         this.utilizada = utilizada;
     }
-    
-    
-    
-    
+
 }

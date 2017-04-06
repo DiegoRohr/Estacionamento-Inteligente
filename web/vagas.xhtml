@@ -7,20 +7,26 @@
         <title>Vagas</title>
     </h:head>
     <h:body>
-        <h:dataTable var="vaga" value="#{vagaController.listarVagas}">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Código da Vaga"/>
-                </f:facet>
-                <h:outputText value="#{vaga.codVaga}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Ocupada"/>
-                </f:facet>
-                <h:outputText value="#{vaga.utilizada == true ? 'Vaga Ocupada' : 'Vaga Desocupada'}" />
-            </h:column>
-        </h:dataTable>
+
+        <h:outputLabel value="USTED NO HA INICIADO SESIÓN" rendered="#{usuarioController.verificarSessao() eq false}" />
+        <h:form rendered="#{usuarioController.verificarSessao()}">			
+            <h:panelGrid columns="2">
+                <h:outputText value="Bem-vindo #{usuario.nome}"/>
+                <h:commandButton value="Sair" action="#{usuarioController.terminarSessao()}" />
+            </h:panelGrid>
+
+
+            <h:form>
+
+                <h:selectOneRadio value="#{bilheteController.bilhete.vaga}" converter="vagaConverter">
+                    <f:selectItems value="#{vagaController.listarVagas}" itemValue="#{vagas.codVaga}" itemLabel="#{vagas.codVaga}" var="vagas" />
+                </h:selectOneRadio>
+
+                <h:commandButton action="#{bilheteController.prepararAdicionarBilhete}" value="Gerar bilhete"/>
+
+            </h:form>
+
+        </h:form>
     </h:body>
 </html>
 

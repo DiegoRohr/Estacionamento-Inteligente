@@ -13,7 +13,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.context.FacesContext;
 
+//import org.apache.commons.codec.digest.DigestUtils;
 /**
  *
  * @author thayseonofrio
@@ -30,6 +32,7 @@ public class UsuarioController {
         listaUsuarios = new ListDataModel(lista);
         return listaUsuarios;
     }
+
 
     public Usuario getUsuario() {
         return usuario;
@@ -67,4 +70,46 @@ public class UsuarioController {
         dao.update(usuario);
         return "index";
     }
+
+    public boolean verificarSessao() {
+        boolean estado;
+
+        if (FacesContext.getCurrentInstance().getExternalContext()
+                .getSessionMap().get("usuario") == null) {
+            estado = false;
+        } else {
+            estado = true;
+        }
+
+        return estado;
+    }
+
+    public String terminarSessao() {
+        FacesContext.getCurrentInstance().getExternalContext()
+                .invalidateSession();
+        return "login";
+    }
+
+    public String verificarDados() throws Exception {
+        UsuarioDaoImp usuDAO = new UsuarioDaoImp();
+        Usuario us;
+        String resultado;
+        try {
+            us = usuDAO.verificarDados(this.usuario);
+            if (us != null) {
+
+                FacesContext.getCurrentInstance().getExternalContext()
+                        .getSessionMap().put("usuario", us);
+
+                resultado = "menu"; 
+            } else {
+                resultado = "login?faces-redirect=true&erro=true";
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return resultado;
+    }
+
 }

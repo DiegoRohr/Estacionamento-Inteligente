@@ -6,13 +6,14 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
 import javax.persistence.OneToOne;
 
 /**
@@ -25,15 +26,16 @@ public class Bilhete implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
     private Date dataHoraEmissao;
     private Date dataHoraBaixa;
     private double valorTotal;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "vagaUtilizada")
     private Vaga vaga;
+    
 
     public Bilhete() {
 
@@ -56,19 +58,12 @@ public class Bilhete implements Serializable {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public Date getDataHoraEmissao() {
         return dataHoraEmissao;
     }
 
     public void setDataHoraEmissao(Date dataHoraEmissao) {
+        dataHoraEmissao = Calendar.getInstance().getTime();
         this.dataHoraEmissao = dataHoraEmissao;
     }
 
@@ -88,6 +83,14 @@ public class Bilhete implements Serializable {
         this.valorTotal = valorTotal;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public Vaga getVaga() {
         return vaga;
     }
@@ -95,8 +98,5 @@ public class Bilhete implements Serializable {
     public void setVaga(Vaga vaga) {
         this.vaga = vaga;
     }
-    
 
 }
-    
-    

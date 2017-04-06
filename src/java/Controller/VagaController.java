@@ -7,11 +7,14 @@ package Controller;
 import Dao.VagaDao;
 import Dao.VagaDaoImp;
 import Model.Vaga;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.context.FacesContext;
+
 /**
  *
  * @author thayseonofrio
@@ -22,7 +25,7 @@ import javax.faces.model.ListDataModel;
 
 @ManagedBean
 @SessionScoped
-public class VagaController {
+public class VagaController{
     private Vaga vaga;
     private DataModel listaVagas;
     
@@ -46,11 +49,11 @@ public class VagaController {
         this.vaga = vaga;
     }
     
-    public Vaga vagaOcupada() {
+    public String vagaOcupada() {
         VagaDao dao = new VagaDaoImp();
         vaga.setUtilizada(true);
         dao.update(vaga);
-        return vaga;
+        return "vagas";
     }
     
     public Vaga vagaDesocupada() {
@@ -59,5 +62,5 @@ public class VagaController {
         dao.update(vaga);
         return vaga;
     }
-
+   
 }

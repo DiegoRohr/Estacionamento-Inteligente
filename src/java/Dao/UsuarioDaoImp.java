@@ -8,6 +8,7 @@ package Dao;
 import Model.Usuario;
 import Utils.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -54,5 +55,27 @@ public class UsuarioDaoImp implements UsuarioDao {
         session.update(usuario);
         t.commit();
     }
+    
+    	
+private Session session;
+	public Usuario verificarDados(Usuario usuario) throws Exception {
+		Usuario us = null;
+
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String hql = "FROM Usuario WHERE email = '" + usuario.getEmail()
+					+ "' and senha = '" + usuario.getSenha() + "'";
+			Query query = session.createQuery(hql);
+
+			if (!query.list().isEmpty()) {
+				us = (Usuario) query.list().get(0);
+			}
+
+		} catch (Exception e) {
+			throw e;
+		}
+
+		return us;
+	}
 
 }

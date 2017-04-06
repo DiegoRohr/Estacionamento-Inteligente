@@ -22,11 +22,6 @@ public class VagaDaoImp implements VagaDao {
         return (Vaga) session.load(Vaga.class, codVaga);
     }
     
-    
-    
-
-
-    
     public List<Vaga> list() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();

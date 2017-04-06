@@ -6,6 +6,8 @@
 package Model;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Usuario implements Serializable {
+
     @Id
     @GeneratedValue
     private long id;
@@ -25,9 +28,9 @@ public class Usuario implements Serializable {
     private String email;
     private Date dataNasc;
     private String senha;
-    
+
     public Usuario() {
-        
+
     }
 
     public Usuario(long id, String nome, String cpf, String email, Date dataNasc, String senha) {
@@ -76,17 +79,28 @@ public class Usuario implements Serializable {
     }
 
     public void setDataNasc(Date dataNasc) {
+        System.out.println(dataNasc);
         this.dataNasc = dataNasc;
     }
 
-    public String getSenha() {
+    public String getSenha() throws UnsupportedEncodingException {
+        senha = Desencripta(senha);
         return senha;
     }
 
-    public void setSenha(String senha) {
+    public void setSenha(String senha) throws UnsupportedEncodingException {
+        senha = Encripta(senha);
         this.senha = senha;
     }
-    
-    
-}
 
+    public String Encripta(String senha) throws UnsupportedEncodingException {
+        String asB64 = Base64.getEncoder().encodeToString(senha.getBytes("utf-8"));
+        return asB64;
+    }
+
+    public String Desencripta(String codigo) throws UnsupportedEncodingException {
+        byte[] asBytes = Base64.getDecoder().decode(codigo);
+        String pass = new String(asBytes, "utf-8");
+        return pass;
+    }
+}

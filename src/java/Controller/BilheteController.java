@@ -8,9 +8,14 @@ package Controller;
 import Dao.BilheteDao;
 import Dao.BilheteDaoImp;
 import Model.Bilhete;
+import java.io.Serializable;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.context.FacesContext;
+
 
 /**
  *
@@ -19,8 +24,9 @@ import javax.faces.model.ListDataModel;
 
 //TO DO: Ao ser criado, o bilhete tem que ser adicionado à tabela Histórico, contendo a id do usuario e a id do bilhete
 //Depois da pra consultar pelo usuario os bilhetes que já teve, pra gerar relatórios 
-
-public class BilheteController {
+@ManagedBean
+@SessionScoped
+public class BilheteController{
     private Bilhete bilhete;
     private DataModel listaBilhetes;
 
@@ -41,7 +47,9 @@ public class BilheteController {
     public String prepararAdicionarBilhete() {
         bilhete = new Bilhete();
         //no momento ta retornando para uma página com esse nome, tem que arrumar depois
-        return "gerenciarBilhete";
+        BilheteDao dao = new BilheteDaoImp();
+        dao.save(bilhete);
+        return "vagas";
     }
 
     public String prepararAlterarUsuario() {
@@ -56,7 +64,7 @@ public class BilheteController {
         return "index";
     }
 
-    public String adicionarUsuario() {
+    public String adicionarBilhete() {
         BilheteDao dao = new BilheteDaoImp();
         dao.save(bilhete);
         return "index";
@@ -67,4 +75,5 @@ public class BilheteController {
         dao.update(bilhete);
         return "index";
     }
+    
 }

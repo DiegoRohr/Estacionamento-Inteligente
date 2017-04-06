@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.io.Serializable;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
@@ -12,7 +13,7 @@ import javax.persistence.OneToOne;
  *
  * @author thayseonofrio
  */
-public class Historico {
+public class Historico implements Serializable{
     @OneToOne
     @JoinColumn(name = "idBilhete")
     private Bilhete bilhete;
