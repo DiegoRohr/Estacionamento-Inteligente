@@ -30,6 +30,14 @@ public class BilheteController{
     private Bilhete bilhete;
     private DataModel listaBilhetes;
 
+    public BilheteController() {
+        if (this.bilhete == null) {
+            this.bilhete = new Bilhete();
+        }
+    }
+    
+    
+
     public DataModel getListarUsuarios() {
         List<Bilhete> lista = new BilheteDaoImp().list();
         listaBilhetes = new ListDataModel(lista);

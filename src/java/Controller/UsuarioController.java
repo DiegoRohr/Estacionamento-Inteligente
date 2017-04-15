@@ -27,6 +27,14 @@ public class UsuarioController {
     private Usuario usuario;
     private DataModel listaUsuarios;
 
+    public UsuarioController() {
+        if (this.usuario == null) {
+            this.usuario = new Usuario();
+        }
+    }
+    
+    
+
     public DataModel getListarUsuarios() {
         List<Usuario> lista = new UsuarioDaoImp().list();
         listaUsuarios = new ListDataModel(lista);

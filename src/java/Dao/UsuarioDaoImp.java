@@ -28,7 +28,11 @@ public class UsuarioDaoImp implements UsuarioDao {
     @Override
     public Usuario getUsuario(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        return (Usuario) session.load(Usuario.class, id);
+        Usuario usuario = (Usuario) session.load(Usuario.class, id);
+        if (usuario == null) {
+            usuario = new Usuario();
+        }
+        return usuario;
     }
 
     @Override

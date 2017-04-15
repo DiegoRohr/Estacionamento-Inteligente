@@ -30,7 +30,7 @@ public class Usuario implements Serializable {
     private String senha;
 
     public Usuario() {
-
+       
     }
 
     public Usuario(long id, String nome, String cpf, String email, Date dataNasc, String senha) {

@@ -28,6 +28,14 @@ import javax.faces.context.FacesContext;
 public class VagaController{
     private Vaga vaga;
     private DataModel listaVagas;
+
+    public VagaController() {
+        if (this.vaga == null) {
+            this.vaga = new Vaga();
+        }
+    }
+    
+    
     
     public DataModel getListarVagas() {
         List<Vaga> lista = new VagaDaoImp().list();
