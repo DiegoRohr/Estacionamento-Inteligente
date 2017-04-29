@@ -8,6 +8,7 @@ package Dao;
 import Model.Usuario;
 import Utils.HibernateUtil;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -19,7 +20,12 @@ import org.hibernate.Transaction;
 public class UsuarioDaoImp implements UsuarioDao {
 
     public void save(Usuario usuario) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
         Transaction t = session.beginTransaction();
         session.save(usuario);
         t.commit();
@@ -27,7 +33,14 @@ public class UsuarioDaoImp implements UsuarioDao {
 
     @Override
     public Usuario getUsuario(long id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+       
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
+        
         Usuario usuario = (Usuario) session.load(Usuario.class, id);
         if (usuario == null) {
             usuario = new Usuario();
@@ -37,7 +50,12 @@ public class UsuarioDaoImp implements UsuarioDao {
 
     @Override
     public List<Usuario> list() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
         Transaction t = session.beginTransaction();
         List lista = session.createQuery("from Usuario").list();
         t.commit();
@@ -46,7 +64,12 @@ public class UsuarioDaoImp implements UsuarioDao {
 
     @Override
     public void remove(Usuario usuario) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
         Transaction t = session.beginTransaction();
         session.delete(usuario);
         t.commit();
@@ -66,7 +89,12 @@ private Session session;
 		Usuario us = null;
 
 		try {
-			session = HibernateUtil.getSessionFactory().openSession();
+			      
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
 			String hql = "FROM Usuario WHERE email = '" + usuario.getEmail()
 					+ "' and senha = '" + usuario.getSenha() + "'";
 			Query query = session.createQuery(hql);

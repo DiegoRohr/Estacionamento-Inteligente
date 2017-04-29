@@ -7,6 +7,7 @@ package Dao;
 
 import Model.Historico;
 import Utils.HibernateUtil;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -18,7 +19,12 @@ public class HistoricoDaoImp implements HistoricoDao {
 
     @Override
     public void save(Historico historico) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
         Transaction t = session.beginTransaction();
         session.save(historico);
         t.commit();

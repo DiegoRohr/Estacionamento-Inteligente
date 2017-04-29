@@ -8,13 +8,19 @@ package Controller;
 import Dao.BilheteDao;
 import Dao.BilheteDaoImp;
 import Model.Bilhete;
+import Model.Vaga;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
+import javax.persistence.EntityManager;
 import javax.faces.model.ListDataModel;
 import javax.faces.context.FacesContext;
+import Controller.VagaController;
+import Dao.VagaDao;
+import Dao.VagaDaoImp;
+import Utils.HibernateUtil;
 
 
 /**
@@ -29,6 +35,7 @@ import javax.faces.context.FacesContext;
 public class BilheteController{
     private Bilhete bilhete;
     private DataModel listaBilhetes;
+    private EntityManager entityManager;
 
     public BilheteController() {
         if (this.bilhete == null) {
@@ -54,7 +61,6 @@ public class BilheteController{
 
     public String prepararAdicionarBilhete() {
         bilhete = new Bilhete();
-        //no momento ta retornando para uma página com esse nome, tem que arrumar depois
         BilheteDao dao = new BilheteDaoImp();
         dao.save(bilhete);
         return "vagas";
@@ -74,8 +80,13 @@ public class BilheteController{
 
     public String adicionarBilhete() {
         BilheteDao dao = new BilheteDaoImp();
-        dao.save(bilhete);
-        return "index";
+        dao.save(bilhete);       
+//        VagaController vc = new VagaController();
+//        Vaga vaga = bilhete.getVaga();
+//        vaga.setUtilizada(true);
+//        entityManager.persist(vaga);
+//        vc.vagaOcupada(vaga);
+        return "bilheteGerado";
     }
 
     public String alterarBilhete() {

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import org.hibernate.annotations.Type;
 
 /**
@@ -19,6 +20,7 @@ import org.hibernate.annotations.Type;
 public class Vaga implements Serializable {
 
     @Id
+    
     private String codVaga;
     @Column(columnDefinition = "TINYINT")
     @Type(type = "org.hibernate.type.NumericBooleanType")
@@ -53,5 +55,25 @@ public class Vaga implements Serializable {
     public void setUtilizada(boolean utilizada) {
         this.utilizada = utilizada;
     }
+
+    @Override
+    public String toString() {
+        return this.getCodVaga();
+    }
+    
+  @Override
+public boolean equals(Object obj) {
+      System.out.println(obj);
+    Vaga test = null;
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+        if (obj instanceof Vaga)
+                return true;
+            
+        return true;
+        
+}
 
 }

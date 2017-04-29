@@ -8,6 +8,7 @@ package Model;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,16 +27,15 @@ public class Bilhete implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
     private Date dataHoraEmissao;
     private Date dataHoraBaixa;
     private double valorTotal;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "vagaUtilizada")
     private Vaga vaga;
-    
 
     public Bilhete() {
 
@@ -59,6 +59,8 @@ public class Bilhete implements Serializable {
     }
 
     public Date getDataHoraEmissao() {
+        if(dataHoraEmissao == null)
+            dataHoraEmissao = Calendar.getInstance().getTime();
         return dataHoraEmissao;
     }
 
@@ -98,5 +100,35 @@ public class Bilhete implements Serializable {
     public void setVaga(Vaga vaga) {
         this.vaga = vaga;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        System.out.println("chegou bilhete");
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        System.out.println("hashhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh2");
+        int hash = 5;
+        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.usuario);
+        hash = 59 * hash + Objects.hashCode(this.dataHoraEmissao);
+        hash = 59 * hash + Objects.hashCode(this.dataHoraBaixa);
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.valorTotal) ^ (Double.doubleToLongBits(this.valorTotal) >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.vaga);
+        return hash;
+    }
+    
+    
 
 }

@@ -57,11 +57,10 @@ public class VagaController{
         this.vaga = vaga;
     }
     
-    public String vagaOcupada() {
+    public void vagaOcupada(Vaga vaga) {
         VagaDao dao = new VagaDaoImp();
         vaga.setUtilizada(true);
         dao.update(vaga);
-        return "vagas";
     }
     
     public Vaga vagaDesocupada() {

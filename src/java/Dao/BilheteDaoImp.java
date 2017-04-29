@@ -8,6 +8,7 @@ package Dao;
 import Model.Bilhete;
 import Utils.HibernateUtil;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -19,21 +20,39 @@ public class BilheteDaoImp implements BilheteDao {
 
     @Override
     public void save(Bilhete bilhete) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+       Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
+        
         Transaction t = session.beginTransaction();
         session.save(bilhete);
         t.commit();
+        
     }
 
     @Override
     public Bilhete getBilhete(long id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
         return (Bilhete) session.load(Bilhete.class, id);
     }
 
     @Override
     public List<Bilhete> list() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
         Transaction t = session.beginTransaction();
         List lista = session.createQuery("from Bilhete").list();
         t.commit();
@@ -42,7 +61,12 @@ public class BilheteDaoImp implements BilheteDao {
 
     @Override
     public void remove(Bilhete bilhete) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
         Transaction t = session.beginTransaction();
         session.delete(bilhete);
         t.commit();
@@ -50,7 +74,12 @@ public class BilheteDaoImp implements BilheteDao {
 
     @Override
     public void update(Bilhete bilhete) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
         Transaction t = session.beginTransaction();
         session.update(bilhete);
         t.commit();

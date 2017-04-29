@@ -8,6 +8,7 @@ package Controller;
 import Dao.UsuarioDao;
 import Dao.UsuarioDaoImp;
 import Model.Usuario;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -32,8 +33,6 @@ public class UsuarioController {
             this.usuario = new Usuario();
         }
     }
-    
-    
 
     public DataModel getListarUsuarios() {
         List<Usuario> lista = new UsuarioDaoImp().list();
@@ -41,9 +40,14 @@ public class UsuarioController {
         return listaUsuarios;
     }
 
-
     public Usuario getUsuario() {
         return usuario;
+    }
+
+    public Usuario getUsuarioPorId(String id) {
+        UsuarioDao usuario = new UsuarioDaoImp();
+        long idLong = Long.parseLong(id);
+        return usuario.getUsuario(idLong);
     }
 
     public void setUsuario(Usuario usuario) {
@@ -109,7 +113,7 @@ public class UsuarioController {
                 FacesContext.getCurrentInstance().getExternalContext()
                         .getSessionMap().put("usuario", us);
 
-                resultado = "menu"; 
+                resultado = "menu";
             } else {
                 resultado = "login?faces-redirect=true&erro=true";
             }

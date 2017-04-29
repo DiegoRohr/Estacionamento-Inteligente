@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -103,4 +104,21 @@ public class Usuario implements Serializable {
         String pass = new String(asBytes, "utf-8");
         return pass;
     }
+    
+        public boolean equals(Object obj) {
+            System.out.println("chegou usuario");
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        return true;
+    }
+
+
+    
 }
