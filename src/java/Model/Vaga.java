@@ -10,12 +10,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import org.hibernate.annotations.Proxy;
 import org.hibernate.annotations.Type;
 
 /**
  *
  * @author thayseonofrio
  */
+@Proxy(lazy=false)
 @Entity
 public class Vaga implements Serializable {
 

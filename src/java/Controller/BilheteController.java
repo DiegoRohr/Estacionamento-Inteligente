@@ -7,6 +7,8 @@ package Controller;
 
 import Dao.BilheteDao;
 import Dao.BilheteDaoImp;
+import Dao.VagaDao;
+import Dao.VagaDaoImp;
 import Model.Bilhete;
 import Model.Vaga;
 import java.io.Serializable;
@@ -21,6 +23,7 @@ import Controller.VagaController;
 import Dao.VagaDao;
 import Dao.VagaDaoImp;
 import Utils.HibernateUtil;
+import java.util.Date;
 
 
 /**
@@ -80,12 +83,13 @@ public class BilheteController{
 
     public String adicionarBilhete() {
         BilheteDao dao = new BilheteDaoImp();
+        bilhete.setDataHoraEmissao(new Date());
         dao.save(bilhete);       
-//        VagaController vc = new VagaController();
-//        Vaga vaga = bilhete.getVaga();
-//        vaga.setUtilizada(true);
-//        entityManager.persist(vaga);
-//        vc.vagaOcupada(vaga);
+        VagaDao vagaDao = new VagaDaoImp();
+        Vaga vaga = bilhete.getVaga();
+        vaga.setUtilizada(true);
+        vagaDao.update(vaga);
+
         return "bilheteGerado";
     }
 
@@ -94,5 +98,19 @@ public class BilheteController{
         dao.update(bilhete);
         return "index";
     }
+    
+    public String finalizarBilhete() {
+        BilheteDao dao = new BilheteDaoImp();
+        bilhete.setDataHoraBaixa(new Date());
+        //calcular depois com base no horário
+        bilhete.setValorTotal(10.0);
+        dao.update(bilhete);
+        //libera a vaga
+        VagaDao vagaDao = new VagaDaoImp();
+        Vaga vaga = bilhete.getVaga();
+        vaga.setUtilizada(false);
+        vagaDao.update(vaga);
+        return "index";
+    } 
     
 }

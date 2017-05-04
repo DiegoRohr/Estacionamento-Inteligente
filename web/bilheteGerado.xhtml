@@ -19,7 +19,7 @@
            <h:outputLabel for="vaga" value="Vaga:"/>
            <h:outputText id="vaga" value="#{bilheteController.bilhete.vaga}" /><br/>
            
-        <h:commandLink action="#">
+        <h:commandLink action="#{bilheteController.finalizarBilhete}">
             <h:outputText value="Estou saindo!"/>
 <!--            esse botao o usuario clica quando for sair do estacionamento,
             talvez fosse melhor colocar esse botao no menu, sla,               

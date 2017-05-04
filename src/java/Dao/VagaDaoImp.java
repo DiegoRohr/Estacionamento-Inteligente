@@ -7,6 +7,7 @@ package Dao;
 
 import Model.Vaga;
 import Utils.HibernateUtil;
+import java.util.LinkedList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -25,7 +26,19 @@ public class VagaDaoImp implements VagaDao {
         } catch (HibernateException ex) {
             session = HibernateUtil.getSessionFactory().openSession();
         }
-        return (Vaga) session.load(Vaga.class, codVaga);
+        Vaga vaga = new Vaga();
+        try {
+            vaga = (Vaga) session.load(Vaga.class, codVaga);
+        } catch (HibernateException he) {
+            System.out.println("Erro ao buscar a vaga: " + he);
+            he.printStackTrace();
+        } finally {
+            if (session.isOpen()){
+                session.close();
+            }
+        }
+        return vaga;
+        
     }
     
     public List<Vaga> list() {
@@ -35,9 +48,25 @@ public class VagaDaoImp implements VagaDao {
         } catch (HibernateException ex) {
             session = HibernateUtil.getSessionFactory().openSession();
         }
-        Transaction t = session.beginTransaction();
-        List lista = session.createQuery("from Vaga").list();
-        t.commit();
+        
+        List<Vaga> lista = new LinkedList<>();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+        lista = session.createQuery("from Vaga").list();
+        transaction.commit();
+        } catch (HibernateException ex) {
+            System.out.println("Erro ao listar: " + ex);
+            if(transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session.isOpen()){
+                session.close();
+            }
+        }
+        
         return lista;
     }
 
@@ -50,9 +79,23 @@ public class VagaDaoImp implements VagaDao {
         } catch (HibernateException ex) {
             session = HibernateUtil.getSessionFactory().openSession();
         }
-        Transaction t = session.beginTransaction();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
         session.update(vaga);
-        t.commit();
+        transaction.commit();
+        } catch (HibernateException ex) {
+            System.out.println("Erro ao atualizar: " + ex);
+            if(transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session.isOpen()){
+                session.close();
+            }
+        }
+       
         
     }
     

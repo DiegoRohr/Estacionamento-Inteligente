@@ -19,6 +19,8 @@ public interface VagaDao {
     public List<Vaga> list();
 
     public void update(Vaga vaga);
+    
+   
 
     
 }

@@ -30,25 +30,27 @@ public class ClasseParaTestes {
 
     public static void main(String[] args) {
         
-    Session session = HibernateUtil.getSessionFactory().openSession();
-    session.beginTransaction();
-    Bilhete bilhete = new Bilhete();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        
+        Bilhete bilhete = new Bilhete();
     Vaga vaga = new Vaga();
     Usuario usuario = new Usuario();
     
-    
+   
     bilhete.setVaga(vaga);
     bilhete.setUsuario(usuario);
     
 
-    vaga.setCodVaga("C10");;
+    vaga.setCodVaga("C10");
 
 
     usuario.setId(8);
+        session.save(bilhete);
+        t.commit();
     
-    session.save(bilhete);
-    session.getTransaction().commit();
-
+    
+    
 
 }
 }
