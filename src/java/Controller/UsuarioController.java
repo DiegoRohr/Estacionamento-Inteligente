@@ -113,7 +113,7 @@ public class UsuarioController {
                 FacesContext.getCurrentInstance().getExternalContext()
                         .getSessionMap().put("usuario", us);
 
-                resultado = "menu";
+                resultado = "index";
             } else {
                 resultado = "login?faces-redirect=true&erro=true";
             }

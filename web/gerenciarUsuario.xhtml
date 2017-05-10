@@ -9,22 +9,55 @@ xmlns:p="http://primefaces.org/ui">
 <title>Gerenciador de Usuários</title>
 </h:head>
 <h:body>
-<h1>Gerenciador de Usuários</h1>
-<h:form>
-Nome: <h:inputText value="#{usuarioController.usuario.nome}"/><br/>
-CPF: <h:inputText value="#{usuarioController.usuario.cpf}"/><br/>
-E-mail: <h:inputText value="#{usuarioController.usuario.email}"/><br/>
-Data de Nascimento:
-<h:inputText value="#{usuarioController.usuario.dataNasc}" a:placeholder="dd/mm/yyyy" >  
-    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3"/>  
-</h:inputText>
+<h1>Usuários</h1>
+        <h:form>
+            <p:commandLink value="Novo Usuário" action="#{usuarioController.prepararAdicionarUsuario}"/><br/>
 
-Senha: <h:inputText value="#{usuarioController.usuario.senha}"/><br/>
+        </h:form>
+        <p:dataTable var="usuario" value="#{usuarioController.listarUsuarios}">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Nome"/>
+                </f:facet>
+                <h:outputText value="#{usuario.nome}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="CPF"/>
+                </f:facet>
+                <h:outputText value="#{usuario.cpf}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="E-mail"/>
+                </f:facet>
+                <h:outputText value="#{usuario.email}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Data de Nascimento"/>
+                </f:facet>
+                <h:outputText value="#{usuario.dataNasc}">
+                    <f:convertDateTime dateStyle="long" pattern="dd/MM/yyyy" />
+                </h:outputText>
+            </p:column>
+            <!--            <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Senha"/>
+                            </f:facet>
+                            <h:outputText value="#{usuario.senha}"/>
+                        </p:column>
+            -->
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Ações"/>
+                </f:facet>
+                <h:form>
+                    <h:commandButton action="#{usuarioController.prepararAlterarUsuario}" value="Alterar"/>
+                    <h:commandButton action="#{usuarioController.excluirUsuario}" value="Excluir"/>
+                </h:form>
+            </p:column>
 
-<h:commandButton action="#{usuarioController.adicionarUsuario}" value="Inserir Novo Usuário"/>
-<h:commandButton action="#{usuarioController.alterarUsuario}" value="Alterar Usuário"/>
-<br/>
-<h:commandLink action="index" value="Voltar"/>
-</h:form>
+        </p:dataTable>
 </h:body>
 </html>

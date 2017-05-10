@@ -9,27 +9,27 @@
     </h:head>
     <h:body>
 
+        <p:layoutUnit position="center">
         <h1>Usuários</h1>
 
 
         <h:form>
-        <h:panelGrid columns="2">			
+        <p:panelGrid columns="2">			
 
-            <h:outputLabel value="Usuario" />
+            <p:outputLabel value="Usuario" />
             <h:inputText value="#{usuarioController.usuario.email}" />
 
-            <h:outputLabel value="Senha" />
+            <p:outputLabel value="Senha" />
             <h:inputSecret value="#{usuarioController.usuario.senha}" />
 
-            <h:commandButton value="Iniciar" action="#{usuarioController.verificarDados()}" />
-        </h:panelGrid>
+            <p:commandButton value="Iniciar" action="#{usuarioController.verificarDados()}" />
+        </p:panelGrid>
 
             <h:outputText value="Email ou senha incorretos!" rendered="#{param['erro']}"/>
 
      </h:form>
+        </p:layoutUnit>
         <br/>
-        <h:form>
-            <h:commandLink value="Novo Usuário" action="#{usuarioController.prepararAdicionarUsuario}"/>
-        </h:form>
+
     </h:body>
 </html>

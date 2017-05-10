@@ -10,58 +10,28 @@
     </h:head>
     <h:body>
 
-        <ui:include src="/header.xhtml" />
-        
-        <h1>Usuários</h1>
         <h:form>
-            <p:commandLink value="Novo Usuário" action="#{usuarioController.prepararAdicionarUsuario}"/><br/>
-
+        <p:menubar>
+        <p:submenu label="Bilhete" icon="ui-icon-document">
+            <p:menuitem value="Ver Bilhete" url="bilheteGerado.xhtml" />
+            <p:separator />
+            <p:menuitem value="Vagas Disponíveis" url="#" />
+            <p:separator />
+            <p:menuitem value="Sair do Estacionamento" url="#" />
+        </p:submenu>
+ 
+        <p:submenu label="Usuários" icon="ui-icon-pencil">
+            <p:menuitem value="Gerenciar Usuários" url="gerenciarUsuario.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
+            <p:menuitem value="Adicionar Usuário" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+        </p:submenu>
+ 
+ 
+ 
+        
+    </p:menubar>
         </h:form>
-        <p:dataTable var="usuario" value="#{usuarioController.listarUsuarios}">
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Nome"/>
-                </f:facet>
-                <h:outputText value="#{usuario.nome}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="CPF"/>
-                </f:facet>
-                <h:outputText value="#{usuario.cpf}"/>
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="E-mail"/>
-                </f:facet>
-                <h:outputText value="#{usuario.email}"/>
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Data de Nascimento"/>
-                </f:facet>
-                <h:outputText value="#{usuario.dataNasc}">
-                    <f:convertDateTime dateStyle="long" pattern="dd/MM/yyyy" />
-                </h:outputText>
-            </p:column>
-            <!--            <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Senha"/>
-                            </f:facet>
-                            <h:outputText value="#{usuario.senha}"/>
-                        </p:column>
-            -->
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="Ações"/>
-                </f:facet>
-                <h:form>
-                    <h:commandButton action="#{usuarioController.prepararAlterarUsuario}" value="Alterar"/>
-                    <h:commandButton action="#{usuarioController.excluirUsuario}" value="Excluir"/>
-                </h:form>
-            </p:column>
-
-        </p:dataTable>
+        
+        <h2> criar bilhete </h2>
         <br/>
         
         <!--        <ui:include src="/footer.xhtml" />-->

@@ -69,6 +69,35 @@ public class VagaDaoImp implements VagaDao {
         
         return lista;
     }
+    
+    public List<Vaga> listDisponiveis() {
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
+        
+        List<Vaga> lista = new LinkedList<>();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+        lista = session.createQuery("from Vaga where utilizada = 0").list();
+        transaction.commit();
+        } catch (HibernateException ex) {
+            System.out.println("Erro ao listar: " + ex);
+            if(transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session.isOpen()){
+                session.close();
+            }
+        }
+        
+        return lista;
+    }
 
     
     @Override

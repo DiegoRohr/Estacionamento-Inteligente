@@ -42,6 +42,12 @@ public class VagaController{
         listaVagas = new ListDataModel(lista);
         return listaVagas;
     }
+    
+    public DataModel getListarVagasDisponiveis() {
+        List<Vaga> lista = new VagaDaoImp().listDisponiveis();
+        listaVagas = new ListDataModel(lista);
+        return listaVagas;
+    }
 
     public Vaga getVaga() {
         return vaga;

@@ -8,13 +8,13 @@
     <ui:define name="conteudo">
         
         
-       <h1>Bilhete</h1><br/>
+       <h1>Meu Bilhete de Estacionamento</h1><br/>
            <h:outputLabel for="nome" value="Nome:"/>
            <h:outputText id="nome" value="#{usuario.nome}"/><br/>
            
            <h:outputLabel for="entrada" value="Horário de entrada:"/>
            <h:outputText id="entrada" value="#{bilheteController.bilhete.dataHoraEmissao}" >
-			<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+               <f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy HH:mm" />
 		</h:outputText><br/>
            
            <h:outputLabel for="vaga" value="Vaga:"/>

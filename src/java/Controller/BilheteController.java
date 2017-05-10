@@ -83,7 +83,7 @@ public class BilheteController{
 
     public String adicionarBilhete() {
         BilheteDao dao = new BilheteDaoImp();
-        bilhete.setDataHoraEmissao(new Date());
+        //bilhete.setDataHoraEmissao(new Date());
         dao.save(bilhete);       
         VagaDao vagaDao = new VagaDaoImp();
         Vaga vaga = bilhete.getVaga();

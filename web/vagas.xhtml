@@ -10,12 +10,13 @@
         <ui:define name="conteudo">
             <h:form>
 
+  
                 <h:inputHidden value="#{bilheteController.bilhete.usuario}" converter="usuarioConverter"/> 
                
                
 
                 <h:selectOneRadio value="#{bilheteController.bilhete.vaga}" converter="vagaConverter">
-                    <f:selectItems value="#{vagaController.listarVagas}" itemValue="#{vagas.codVaga}" itemLabel="#{vagas.codVaga}" var="vagas" />
+                    <f:selectItems value="#{vagaController.listarVagasDisponiveis}" itemValue="#{vagas.codVaga}" itemLabel="#{vagas.codVaga}" var="vagas" />
                 </h:selectOneRadio>
 
                 <h:commandButton action="#{bilheteController.adicionarBilhete}" value="Gerar bilhete"/>

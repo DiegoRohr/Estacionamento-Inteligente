@@ -17,6 +17,9 @@ public interface VagaDao {
     public Vaga getVaga(String codVaga);
 
     public List<Vaga> list();
+    
+    public List<Vaga> listDisponiveis();
+
 
     public void update(Vaga vaga);
     
