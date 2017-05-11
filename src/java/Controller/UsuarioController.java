@@ -56,12 +56,12 @@ public class UsuarioController {
 
     public String prepararAdicionarUsuario() {
         usuario = new Usuario();
-        return "gerenciarUsuario";
+        return "adicionarUsuario";
     }
 
     public String prepararAlterarUsuario() {
         usuario = (Usuario) (listaUsuarios.getRowData());
-        return "gerenciarUsuario";
+        return "adicionarUsuario";
     }
 
     public String excluirUsuario() {
