@@ -1,17 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <h:form>
+            <p:menubar>
+                <p:submenu label="Bilhete" icon="ui-icon-document">
+                    <p:menuitem value="Ver Bilhete" action="bilheteGerado" />
+                    <p:separator />
+                    <p:menuitem value="Vagas Disponíveis" action="vagas" />
+                    <p:separator />
+                    <p:menuitem value="Sair do Estacionamento" url="#" />
+                </p:submenu>
+
+                <p:submenu label="Usuários" icon="ui-icon-pencil">
+                    <p:menuitem value="Gerenciar Usuários" action="gerenciarUsuario" icon="ui-icon-arrowreturnthick-1-w" />
+
+                </p:submenu>
+
+            <f:facet name="options">
+                <p:outputLabel style="margin-right:10px" value="Bem-vindo #{usuario.nome}"/>
+                <h:form rendered="#{usuarioController.verificarSessao()}" >		
+               <p:commandButton type="button" action="#{usuarioController.terminarSessao()}" value="Logout" icon="ui-icon-extlink" />
+                </h:form>
+            </f:facet>
 
 
-<ui:composition template="/WEB-INF/template.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-
-
+            </p:menubar>
+        </h:form>
+    
 </ui:composition>
