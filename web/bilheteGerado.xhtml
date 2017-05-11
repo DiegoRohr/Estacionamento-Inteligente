@@ -1,13 +1,36 @@
-<ui:composition template="/WEB-INF/template.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Gerenciador de Usuários</title>
+</h:head>
+    <h:body>
+        
+        <h:form>
+            <p:menubar>
+                <p:submenu label="Bilhete" icon="ui-icon-document">
+                    <p:menuitem value="Ver Bilhete" action="bilheteGerado" />
+                    <p:separator />
+                    <p:menuitem value="Vagas Disponíveis" action="vagas" />
+                    <p:separator />
+                    <p:menuitem value="Sair do Estacionamento" url="#" />
+                </p:submenu>
 
-    <ui:define name="conteudo">
-        
-        
+                <p:submenu label="Usuários" icon="ui-icon-pencil">
+                    <p:menuitem value="Gerenciar Usuários" action="gerenciarUsuario" icon="ui-icon-arrowreturnthick-1-w" />
+
+                </p:submenu>
+
+
+
+
+            </p:menubar>
+        </h:form>
+    <h:form>
        <h1>Meu Bilhete de Estacionamento</h1><br/>
            <h:outputLabel for="nome" value="Nome:"/>
            <h:outputText id="nome" value="#{usuario.nome}"/><br/>
@@ -26,7 +49,7 @@
             talvez fosse melhor colocar esse botao no menu, sla,               
 -->
         </h:commandLink>
-         
+    </h:form>
 
-    </ui:define>
-</ui:composition>
+    </h:body>
+</html>

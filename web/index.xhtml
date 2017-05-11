@@ -11,29 +11,29 @@
     <h:body>
 
         <h:form>
-        <p:menubar>
-        <p:submenu label="Bilhete" icon="ui-icon-document">
-            <p:menuitem value="Ver Bilhete" url="bilheteGerado.xhtml" />
-            <p:separator />
-            <p:menuitem value="Vagas Disponíveis" url="#" />
-            <p:separator />
-            <p:menuitem value="Sair do Estacionamento" url="#" />
-        </p:submenu>
- 
-        <p:submenu label="Usuários" icon="ui-icon-pencil">
-            <p:menuitem value="Gerenciar Usuários" url="gerenciarUsuario.xhtml" icon="ui-icon-arrowreturnthick-1-w" />
-            <p:menuitem value="Adicionar Usuário" url="#" icon="ui-icon-arrowreturnthick-1-e" />
-        </p:submenu>
- 
- 
- 
-        
-    </p:menubar>
+            <p:menubar>
+                <p:submenu label="Bilhete" icon="ui-icon-document">
+                    <p:menuitem value="Ver Bilhete" action="bilheteGerado" />
+                    <p:separator />
+                    <p:menuitem value="Vagas Disponíveis" action="vagas" />
+                    <p:separator />
+                    <p:menuitem value="Sair do Estacionamento" url="#" />
+                </p:submenu>
+
+                <p:submenu label="Usuários" icon="ui-icon-pencil">
+                    <p:menuitem value="Gerenciar Usuários" action="gerenciarUsuario" icon="ui-icon-arrowreturnthick-1-w" />
+
+                </p:submenu>
+
+
+
+
+            </p:menubar>
         </h:form>
         
-        <h2> criar bilhete </h2>
+
         <br/>
-        
+
         <!--        <ui:include src="/footer.xhtml" />-->
     </h:body>
 </html>

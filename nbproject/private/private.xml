@@ -3,8 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/src/java/Dao/BilheteDaoImp.java</file>
-            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/src/java/Controller/BilheteController.java</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/web/index.xhtml</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/src/java/Dao/VagaDao.java</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/src/java/Dao/VagaDaoImp.java</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/web/header.xhtml</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/web/menu.xhtml</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/web/gerenciarUsuario.xhtml</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/web/login.xhtml</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/web/PaginaModelo.xhtml</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/src/java/Controller/VagaController.java</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/src/java/Model/Vaga.java</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/web/vagas.xhtml</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/web/bilheteGerado.xhtml</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/web/criarBilhete.xhtml</file>
+            <file>file:/C:/Users/0584150/Documents/NetBeansProjects/Estacionamento-Inteligente/src/java/Controller/UsuarioController.java</file>
         </group>
     </open-files>
 </project-private>
