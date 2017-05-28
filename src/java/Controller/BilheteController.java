@@ -110,7 +110,17 @@ public class BilheteController{
         Vaga vaga = bilhete.getVaga();
         vaga.setUtilizada(false);
         vagaDao.update(vaga);
-        return "index";
+        
+        //limpa bilhete
+        this.bilhete = new Bilhete();
+        return "bilheteGerado";
     } 
+    
+    public boolean bilheteExiste() {
+        if(this.bilhete.getId() == 0) {
+            return false;
+        }
+        return true;
+    }
     
 }

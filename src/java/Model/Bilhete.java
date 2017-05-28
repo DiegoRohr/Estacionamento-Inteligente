@@ -61,8 +61,6 @@ public class Bilhete implements Serializable {
     }
 
     public Date getDataHoraEmissao() {
-        if(dataHoraEmissao == null)
-            dataHoraEmissao = Calendar.getInstance().getTime();
         return dataHoraEmissao;
     }
 

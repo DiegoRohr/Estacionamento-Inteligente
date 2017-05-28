@@ -8,26 +8,28 @@ xmlns:p="http://primefaces.org/ui"
 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 <title>Gerenciador de Vagas</title>
+<link rel="stylesheet" type="text/css" href="resources/css/estilo.css"></link>
 </h:head>
     <h:body>
     <ui:include src="menu.xhtml" />
 
+    <div class="center">
             <h:form>
 
   
                 <h:inputHidden value="#{bilheteController.bilhete.usuario}" converter="usuarioConverter"/> 
                
-               
+              
 
-                <h:selectOneRadio value="#{bilheteController.bilhete.vaga}" converter="vagaConverter">
+                <h:selectOneMenu value="#{bilheteController.bilhete.vaga}" converter="vagaConverter" style="width: 200px">
                     <f:selectItems value="#{vagaController.listarVagasDisponiveis}" itemValue="#{vagas.codVaga}" itemLabel="#{vagas.codVaga}" var="vagas" />
-                </h:selectOneRadio>
+                </h:selectOneMenu>
 
-                <h:commandButton action="#{bilheteController.adicionarBilhete}" value="Gerar bilhete"/>
+                <p:commandButton action="#{bilheteController.adicionarBilhete}" value="Gerar bilhete"/>
 
             </h:form>
    
-
+    </div>
     </h:body>
 </html>
 
