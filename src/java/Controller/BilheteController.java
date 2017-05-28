@@ -83,7 +83,7 @@ public class BilheteController{
 
     public String adicionarBilhete() {
         BilheteDao dao = new BilheteDaoImp();
-        //bilhete.setDataHoraEmissao(new Date());
+        bilhete.setDataHoraEmissao(new Date());
         dao.save(bilhete);       
         VagaDao vagaDao = new VagaDaoImp();
         Vaga vaga = bilhete.getVaga();
@@ -111,9 +111,8 @@ public class BilheteController{
         vaga.setUtilizada(false);
         vagaDao.update(vaga);
         
-        //limpa bilhete
-        this.bilhete = new Bilhete();
-        return "bilheteGerado";
+        
+        return "bilheteFinalizado";
     } 
     
     public boolean bilheteExiste() {
@@ -121,6 +120,11 @@ public class BilheteController{
             return false;
         }
         return true;
+    }
+    
+    public String limpar() {
+        this.bilhete = new Bilhete();
+        return "index";
     }
     
 }

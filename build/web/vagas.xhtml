@@ -14,20 +14,25 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:include src="menu.xhtml" />
 
     <div class="center">
-            <h:form>
+        <h:form rendered="#{bilheteController.bilheteExiste() eq false}">
 
   
                 <h:inputHidden value="#{bilheteController.bilhete.usuario}" converter="usuarioConverter"/> 
                
-              
+                <h1> Escolha uma vaga disponível: </h1>
 
-                <h:selectOneMenu value="#{bilheteController.bilhete.vaga}" converter="vagaConverter" style="width: 200px">
+                <h:selectOneMenu value="#{bilheteController.bilhete.vaga}" converter="vagaConverter" style="width: 100%">
                     <f:selectItems value="#{vagaController.listarVagasDisponiveis}" itemValue="#{vagas.codVaga}" itemLabel="#{vagas.codVaga}" var="vagas" />
                 </h:selectOneMenu>
 
+                <br> </br>
                 <p:commandButton action="#{bilheteController.adicionarBilhete}" value="Gerar bilhete"/>
 
             </h:form>
+        
+        <h:form rendered="#{bilheteController.bilheteExiste()}">
+            <h1> você já gerou um bilhete </h1>
+        </h:form>
    
     </div>
     </h:body>

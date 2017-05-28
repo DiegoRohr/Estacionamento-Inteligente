@@ -10,24 +10,24 @@
     <h:body>
 
         <p:layoutUnit position="center">
-        <h1>Usuários</h1>
+            <h1>Sistema de Estacionamento</h1>
 
 
-        <h:form>
-        <p:panelGrid columns="2">			
+            <h:form>
+                <p:panelGrid columns="2">			
 
-            <p:outputLabel value="Usuario" />
-            <h:inputText value="#{usuarioController.usuario.email}" />
+                    <p:outputLabel value="Usuario" />
+                    <h:inputText value="#{usuarioController.usuario.email}" />
 
-            <p:outputLabel value="Senha" />
-            <h:inputSecret value="#{usuarioController.usuario.senha}" />
+                    <p:outputLabel value="Senha" />
+                    <h:inputSecret value="#{usuarioController.usuario.senha}" />
 
-            <p:commandButton value="Iniciar" action="#{usuarioController.verificarDados()}" />
-        </p:panelGrid>
+                    <p:commandButton value="Iniciar" action="#{usuarioController.verificarDados()}" />
+                </p:panelGrid>
 
-            <h:outputText value="Email ou senha incorretos!" rendered="#{param['erro']}"/>
+                <h:outputText value="Email ou senha incorretos!" rendered="#{param['erro']}"/>
 
-     </h:form>
+            </h:form>
         </p:layoutUnit>
         <br/>
 

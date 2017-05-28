@@ -7,12 +7,12 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Bilhete Gerado</title>
+        <title>Bilhete Finalizado</title>
         <link rel="stylesheet" type="text/css" href="resources/css/estilo.css"></link>
     </h:head>
     <h:body>
         <ui:include src="menu.xhtml" />
-        <h:form rendered="#{bilheteController.bilheteExiste()}">
+        <h:form>
             <h1>Meu Bilhete de Estacionamento</h1><br/>
             <p:outputLabel for="nome" value="Nome:"/>
             <p:outputLabel id="nome" value="#{usuario.nome}"/><br/>
@@ -21,22 +21,23 @@
             <p:outputLabel id="entrada" value="#{bilheteController.bilhete.dataHoraEmissao}" >
                 <f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy HH:mm" />
             </p:outputLabel><br/>
+            <p:outputLabel for="saida" value="Horário de saída"/>
+            <p:outputLabel id="saida" value="#{bilheteController.bilhete.dataHoraBaixa}" >
+                <f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy HH:mm" />
+            </p:outputLabel><br/>
 
             <p:outputLabel for="vaga" value="Vaga:"/>
             <p:outputLabel id="vaga" value="#{bilheteController.bilhete.vaga}" /><br/>
 
-            <p:commandLink action="#{bilheteController.finalizarBilhete}">
-                <p:outputLabel value="Estou saindo!"/>
+            <p:outputLabel for="valor" value="Valor Total:"/>
+            <p:outputLabel id="valor" value="#{bilheteController.bilhete.valorTotal}" /><br/>
+
+            <p:commandLink action="#{bilheteController.limpar}">
+                <p:outputLabel value="Finalizar"/>
 
             </p:commandLink>
         </h:form>
 
-        <h:form rendered="#{bilheteController.bilheteExiste() eq false}">
-            <div class="center">
-                <h1> Você ainda não gerou um bilhete de estacionamento. </h1>
-                <h2> Comece escolhendo uma <p:commandButton value="vaga disponível" action="vagas"> </p:commandButton> </h2>
-            </div>
-        </h:form>
 
     </h:body>
 </html>
