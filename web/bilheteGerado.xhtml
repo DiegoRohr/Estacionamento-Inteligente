@@ -8,10 +8,11 @@ xmlns:p="http://primefaces.org/ui"
 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 <title>Gerenciador de Usuários</title>
+<link rel="stylesheet" type="text/css" href="resources/css/estilo.css"></link>
 </h:head>
     <h:body>
         <ui:include src="menu.xhtml" />
-    <h:form>
+    <h:form rendered="#{bilheteController.bilheteExiste()}">
        <h1>Meu Bilhete de Estacionamento</h1><br/>
            <h:outputLabel for="nome" value="Nome:"/>
            <h:outputText id="nome" value="#{usuario.nome}"/><br/>
@@ -26,11 +27,16 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
            
         <h:commandLink action="#{bilheteController.finalizarBilhete}">
             <h:outputText value="Estou saindo!"/>
-<!--            esse botao o usuario clica quando for sair do estacionamento,
-            talvez fosse melhor colocar esse botao no menu, sla,               
--->
+
         </h:commandLink>
     </h:form>
+        
+        <h:form rendered="#{bilheteController.bilheteExiste() eq false}">
+            <div class="center">
+                <h1> Você ainda não gerou um bilhete de estacionamento. </h1>
+                <h2> Começe escolhendo uma <p:commandButton value="vaga disponível" action="vagas"> </p:commandButton> </h2>
+            </div>
+        </h:form>
 
     </h:body>
 </html>
