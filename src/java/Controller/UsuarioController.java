@@ -49,6 +49,7 @@ public class UsuarioController {
         long idLong = Long.parseLong(id);
         return usuario.getUsuario(idLong);
     }
+    
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;

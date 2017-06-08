@@ -6,6 +6,8 @@
 package Model;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
@@ -13,6 +15,7 @@ import javax.persistence.OneToOne;
  *
  * @author thayseonofrio
  */
+@Entity
 public class Historico implements Serializable{
     @OneToOne
     @JoinColumn(name = "idBilhete")
@@ -21,6 +24,8 @@ public class Historico implements Serializable{
     @OneToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
+    @Id
+    private int id;
 
     public Historico(Bilhete bilhete, Usuario usuario) {
         this.bilhete = bilhete;
@@ -45,6 +50,14 @@ public class Historico implements Serializable{
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

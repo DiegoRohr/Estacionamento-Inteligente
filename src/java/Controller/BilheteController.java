@@ -20,8 +20,11 @@ import javax.persistence.EntityManager;
 import javax.faces.model.ListDataModel;
 import javax.faces.context.FacesContext;
 import Controller.VagaController;
+import Dao.HistoricoDao;
+import Dao.HistoricoDaoImp;
 import Dao.VagaDao;
 import Dao.VagaDaoImp;
+import Model.Historico;
 import Utils.HibernateUtil;
 import java.util.Date;
 
@@ -89,7 +92,13 @@ public class BilheteController{
         Vaga vaga = bilhete.getVaga();
         vaga.setUtilizada(true);
         vagaDao.update(vaga);
-
+        
+        //salvar no historico
+        Historico historico = new Historico();
+        HistoricoDao histDao = new HistoricoDaoImp();
+        historico.setBilhete(bilhete);
+        historico.setUsuario(bilhete.getUsuario());
+        histDao.save(historico);
         return "bilheteGerado";
     }
 

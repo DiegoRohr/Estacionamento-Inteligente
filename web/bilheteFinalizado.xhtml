@@ -12,18 +12,18 @@
     </h:head>
     <h:body>
         <ui:include src="menu.xhtml" />
-        <h:form>
+        <h:form class="bilheteGeradoForm">
             <h1>Meu Bilhete de Estacionamento</h1><br/>
             <p:outputLabel for="nome" value="Nome:"/>
             <p:outputLabel id="nome" value="#{usuario.nome}"/><br/>
 
-            <p:outputLabel for="entrada" value="Horário de entrada:"/>
+            <p:outputLabel for="entrada" value="Entrada:"/>
             <p:outputLabel id="entrada" value="#{bilheteController.bilhete.dataHoraEmissao}" >
-                <f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy HH:mm" />
+                <f:convertDateTime timeZone="GMT-3" pattern="HH:mm - dd/MM/yyyy" />
             </p:outputLabel><br/>
-            <p:outputLabel for="saida" value="Horário de saída"/>
+            <p:outputLabel for="saida" value="Saída"/>
             <p:outputLabel id="saida" value="#{bilheteController.bilhete.dataHoraBaixa}" >
-                <f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy HH:mm" />
+                <f:convertDateTime timeZone="GMT-3" pattern="HH:mm - dd/MM/yyyy" />
             </p:outputLabel><br/>
 
             <p:outputLabel for="vaga" value="Vaga:"/>

@@ -21,12 +21,13 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
                
                 <h1> Escolha uma vaga disponível: </h1>
 
-                <h:selectOneMenu value="#{bilheteController.bilhete.vaga}" converter="vagaConverter" style="width: 100%">
+                <h:selectOneMenu class="selectVagas" value="#{bilheteController.bilhete.vaga}" converter="vagaConverter" style="width: 100%">
                     <f:selectItems value="#{vagaController.listarVagasDisponiveis}" itemValue="#{vagas.codVaga}" itemLabel="#{vagas.codVaga}" var="vagas" />
                 </h:selectOneMenu>
-
+                
+                <h:outputLabel value="Número de vagas disponíveis: #{vagaController.vagasDisponiveisCount}"> </h:outputLabel>
                 <br> </br>
-                <p:commandButton action="#{bilheteController.adicionarBilhete}" value="Gerar bilhete"/>
+                <p:commandButton class="buttonVaga" action="#{bilheteController.adicionarBilhete}" value="Gerar bilhete"/>
 
             </h:form>
         

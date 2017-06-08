@@ -48,6 +48,10 @@ public class VagaController{
         listaVagas = new ListDataModel(lista);
         return listaVagas;
     }
+    
+    public int getVagasDisponiveisCount() {
+        return listaVagas.getRowCount();
+    }
 
     public Vaga getVaga() {
         return vaga;

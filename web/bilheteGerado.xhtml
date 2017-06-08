@@ -12,29 +12,29 @@
     </h:head>
     <h:body>
         <ui:include src="menu.xhtml" />
-        <h:form rendered="#{bilheteController.bilheteExiste()}">
-            <h1>Meu Bilhete de Estacionamento</h1><br/>
+        <h:form class="bilheteGeradoForm" rendered="#{bilheteController.bilheteExiste()}">
+            <h1 class="pageH">Meu Bilhete de Estacionamento</h1><br/>
             <p:outputLabel for="nome" value="Nome:"/>
             <p:outputLabel id="nome" value="#{usuario.nome}"/><br/>
 
-            <p:outputLabel for="entrada" value="Horário de entrada:"/>
+            <p:outputLabel for="entrada" value="Entrada:"/>
             <p:outputLabel id="entrada" value="#{bilheteController.bilhete.dataHoraEmissao}" >
-                <f:convertDateTime timeZone="GMT-3" pattern="dd/MM/yyyy HH:mm" />
+                <f:convertDateTime timeZone="GMT-3" pattern="HH:mm - dd/MM/yyyy" />
             </p:outputLabel><br/>
 
             <p:outputLabel for="vaga" value="Vaga:"/>
             <p:outputLabel id="vaga" value="#{bilheteController.bilhete.vaga}" /><br/>
 
             <p:commandLink action="#{bilheteController.finalizarBilhete}">
-                <p:outputLabel value="Estou saindo!"/>
+                <p:outputLabel value="Sair do estacionamento"/>
 
             </p:commandLink>
         </h:form>
 
         <h:form rendered="#{bilheteController.bilheteExiste() eq false}">
             <div class="center">
-                <h1> Você ainda não gerou um bilhete de estacionamento. </h1>
-                <h2> Comece escolhendo uma <p:commandButton value="vaga disponível" action="vagas"> </p:commandButton> </h2>
+                <h1 class="pageH"> Você ainda não gerou um bilhete de estacionamento. </h1>
+                <h2 class="pageH"> <p:commandButton value="Escolher Vaga" action="vagas"> </p:commandButton> </h2>
             </div>
         </h:form>
 
