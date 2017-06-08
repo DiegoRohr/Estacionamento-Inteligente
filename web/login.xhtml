@@ -5,24 +5,26 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Usuários</title>
+        <title>Sistema de Estacionamento</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/estilo.css"></link>
     </h:head>
     <h:body>
+        <div class="loginBody">
 
-        <p:layoutUnit position="center">
-            <h1>Sistema de Estacionamento</h1>
+        <p:layoutUnit id="loginDiv" position="center">
+            <h1><h:graphicImage id="logo" name="images/parking-logo.png" /></h1>
 
 
-            <h:form>
-                <p:panelGrid columns="2">			
+            <h:form class="formLogin">
+                <p:panelGrid class="loginGrid" columns="1">			
 
-                    <p:outputLabel value="Usuario" />
-                    <h:inputText value="#{usuarioController.usuario.email}" />
+<!--                    <p:outputLabel value="Usuario" />-->
+<p:inputText placeholder="Usuário" value="#{usuarioController.usuario.email}" />
 
-                    <p:outputLabel value="Senha" />
-                    <h:inputSecret value="#{usuarioController.usuario.senha}" />
+<!--                    <p:outputLabel value="Senha" />-->
+<p:password placeholder="Senha" value="#{usuarioController.usuario.senha}" />
 
-                    <p:commandButton value="Iniciar" action="#{usuarioController.verificarDados()}" />
+                    <p:commandButton class="loginButton" value="Iniciar" action="#{usuarioController.verificarDados()}" />
                 </p:panelGrid>
 
                 <h:outputText value="Email ou senha incorretos!" rendered="#{param['erro']}"/>
@@ -30,6 +32,6 @@
             </h:form>
         </p:layoutUnit>
         <br/>
-
+        </div>
     </h:body>
 </html>

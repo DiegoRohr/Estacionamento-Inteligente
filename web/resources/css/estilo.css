@@ -8,8 +8,64 @@ and open the template in the editor.
     Author     : thayseonofrio
 */
 
+.loginBody {
+    background-image: url(http://cdn.wallpapersafari.com/86/72/Zq7o6L.jpg);
+    background-size: inherit;
+    min-height: 800px;
+}
+
 .center {
     margin: 0 auto;
     width: 500px;
     padding-top: 5%;
+}
+
+.formLogin {
+    display: inline-block;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+
+.formLogin > table {
+    width: 100%;
+}
+
+
+
+#loginDiv {
+
+    padding: 5%;
+    position: relative;
+    text-align: center;
+    width: 40%;
+    margin: 0 auto;
+    top: 100px;
+    box-shadow: 3px 3px 3px #888888; 
+}
+
+#logo {
+    max-width: 10%;
+}
+
+.ui-layout-unit-content {
+    border: 0;
+}
+
+.loginGrid.ui-panelgrid>*>tr,
+.loginGrid.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
+
+.button {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 15px;
+    background-color: #0065A3;
+    border: 0;
+    color: #fff;
+    text-shadow: none;
+    background-image: none;
 }
