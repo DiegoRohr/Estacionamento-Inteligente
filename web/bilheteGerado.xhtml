@@ -12,29 +12,65 @@
     </h:head>
     <h:body>
         <ui:include src="menu.xhtml" />
+
+
+
         <h:form class="bilheteGeradoForm" rendered="#{bilheteController.bilheteExiste()}">
-            <h1 class="pageH">Meu Bilhete de Estacionamento</h1><br/>
-            <p:outputLabel for="nome" value="Nome:"/>
-            <p:outputLabel id="nome" value="#{usuario.nome}"/><br/>
+            <div class="container">
+                <section class="title-section">
+                    <h1>Bilhete de Estacionamento</h1>
+                </section>
 
-            <p:outputLabel for="entrada" value="Entrada:"/>
-            <p:outputLabel id="entrada" value="#{bilheteController.bilhete.dataHoraEmissao}" >
-                <f:convertDateTime timeZone="GMT-3" pattern="HH:mm - dd/MM/yyyy" />
-            </p:outputLabel><br/>
+                <ul class="bilhete-bg">
+                    <li class="b-data highlight">
 
-            <p:outputLabel for="vaga" value="Vaga:"/>
-            <p:outputLabel id="vaga" value="#{bilheteController.bilhete.vaga}" /><br/>
+                        <div class="details">
+                            <h1 class="b-title">Usuário:</h1>
+                            <p class="b-description"> <p:outputLabel id="nome" value="#{usuario.nome}"/><br/></p>
+                        </div>
+                    </li>
 
-            <p:commandLink action="#{bilheteController.finalizarBilhete}">
-                <p:outputLabel value="Sair do estacionamento"/>
+                    <li class="b-data">
 
-            </p:commandLink>
+                        <div class="details">
+                            <h1 class="b-title">Entrada:</h1>
+                            <p class="b-description">
+                                <p:outputLabel id="entrada" value="#{bilheteController.bilhete.dataHoraEmissao}" >
+                                    <f:convertDateTime timeZone="GMT-3" pattern="HH:mm - dd/MM/yyyy" />
+                                </p:outputLabel>   
+                            </p>
+                        </div>
+
+
+                    </li>
+
+                    <li class="b-data">
+
+                        <div class="details">
+                            <h1 class="b-title">Vaga:</h1>
+                            <p class="b-description">
+                                <p:outputLabel id="vaga" value="#{bilheteController.bilhete.vaga}" />
+                            </p>
+                        </div>
+
+
+                    </li>
+
+                </ul>
+
+                <p:commandLink class="btn select" action="#{bilheteController.finalizarBilhete()}">
+                    <p:outputLabel value="Sair do estacionamento"/>
+                </p:commandLink>
+
+            </div>
+
         </h:form>
 
         <h:form rendered="#{bilheteController.bilheteExiste() eq false}">
+           
             <div class="center">
                 <h1 class="pageH"> Você ainda não gerou um bilhete de estacionamento. </h1>
-                <h2 class="pageH"> <p:commandButton value="Escolher Vaga" action="vagas"> </p:commandButton> </h2>
+                <h2 class="pageH"> <p:commandButton class="btn select maior" value="Escolher Vaga" action="vagas"> </p:commandButton> </h2>
             </div>
         </h:form>
 

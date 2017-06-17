@@ -13,29 +13,87 @@
     <h:body>
         <ui:include src="menu.xhtml" />
         <h:form class="bilheteGeradoForm">
-            <h1>Meu Bilhete de Estacionamento</h1><br/>
-            <p:outputLabel for="nome" value="Nome:"/>
-            <p:outputLabel id="nome" value="#{usuario.nome}"/><br/>
 
-            <p:outputLabel for="entrada" value="Entrada:"/>
-            <p:outputLabel id="entrada" value="#{bilheteController.bilhete.dataHoraEmissao}" >
-                <f:convertDateTime timeZone="GMT-3" pattern="HH:mm - dd/MM/yyyy" />
-            </p:outputLabel><br/>
-            <p:outputLabel for="saida" value="Saída"/>
-            <p:outputLabel id="saida" value="#{bilheteController.bilhete.dataHoraBaixa}" >
-                <f:convertDateTime timeZone="GMT-3" pattern="HH:mm - dd/MM/yyyy" />
-            </p:outputLabel><br/>
+            <div class="container">
+                <section class="title-section">
+                    <h1>Bilhete de Estacionamento</h1>
+                </section>
 
-            <p:outputLabel for="vaga" value="Vaga:"/>
-            <p:outputLabel id="vaga" value="#{bilheteController.bilhete.vaga}" /><br/>
+                <ul class="bilhete-bg">
+                    <li class="b-data highlight">
 
-            <p:outputLabel for="valor" value="Valor Total:"/>
-            <p:outputLabel id="valor" value="#{bilheteController.bilhete.valorTotal}" /><br/>
+                        <div class="details">
+                            <h1 class="b-title">Usuário:</h1>
+                            <p class="b-description"> <p:outputLabel id="nome" value="#{usuario.nome}"/><br/></p>
+                        </div>
+                    </li>
 
-            <p:commandLink action="#{bilheteController.limpar}">
-                <p:outputLabel value="Finalizar"/>
+                    <li class="b-data">
 
-            </p:commandLink>
+                        <div class="details">
+                            <h1 class="b-title">Entrada:</h1>
+                            <p class="b-description">
+                                <p:outputLabel id="entrada" value="#{bilheteController.bilhete.dataHoraEmissao}" >
+                                    <f:convertDateTime timeZone="GMT-3" pattern="HH:mm - dd/MM/yyyy" />
+                                </p:outputLabel>   
+                            </p>
+                        </div>
+
+
+                    </li>
+
+                    <li class="b-data">
+
+                        <div class="details">
+                            <h1 class="b-title">Saída:</h1>
+                            <p class="b-description">
+                                <p:outputLabel id="saida" value="#{bilheteController.bilhete.dataHoraBaixa}" >
+                                    <f:convertDateTime timeZone="GMT-3" pattern="HH:mm - dd/MM/yyyy" />
+                                </p:outputLabel>   
+                            </p>
+                        </div>
+
+
+                    </li>
+
+                    <li class="b-data">
+
+                        <div class="details">
+                            <h1 class="b-title">Vaga:</h1>
+                            <p class="b-description">
+                                <p:outputLabel id="vaga" value="#{bilheteController.bilhete.vaga}" />
+                            </p>
+                        </div>
+
+
+                    </li>
+
+                    <li class="b-data">
+
+                        <div class="details">
+                            <h1 class="b-title">Valor Total: </h1>
+                            <p class="b-description">
+                                <p:outputLabel id="valor" value="R$ #{bilheteController.bilhete.valorTotal}" />
+                            </p>
+                        </div>
+
+
+                    </li>
+
+                </ul>
+
+                <p:commandLink class="btn select" action="#{bilheteController.limpar}">
+                    <p:outputLabel value="Finalizar"/>
+                </p:commandLink>
+
+
+            </div>
+
+
+
+
+
+
         </h:form>
 
 
