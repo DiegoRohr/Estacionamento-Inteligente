@@ -8,15 +8,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Gerenciador de Usuários</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/estilo.css"></link>
     </h:head>
     <h:body>
         <ui:include src="menu.xhtml" />
-        <h1>Usuários</h1>
-        <h:form>
-            <p:commandLink value="Novo Usuário" action="#{usuarioController.prepararAdicionarUsuario}"/><br/>
-
-        </h:form>
-        <p:dataTable var="usuario" value="#{usuarioController.listarUsuarios}">
+      
+       
+        <div class="table-responsive">
+        <p:dataTable tableStyleClass="table table-striped" var="usuario" value="#{usuarioController.listarUsuarios}">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="Nome"/>
@@ -61,5 +60,9 @@
             </p:column>
 
         </p:dataTable>
+        <h:form>
+            <br></br><p:commandLink class="btn select" value="Novo Usuário" action="#{usuarioController.prepararAdicionarUsuario}"/><br/>
+        </h:form>
+        </div>
     </h:body>
 </html>

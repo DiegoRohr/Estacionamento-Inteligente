@@ -8,23 +8,23 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Gerenciador de Usuários</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/estilo.css"></link>
     </h:head>
     <h:body>
 <ui:include src="menu.xhtml" />
-        <h1>Usuários</h1>
-        <h:form>
-            Nome: <p:inputText value="#{usuarioController.usuario.nome}"/><br/>
-            CPF: <p:inputText value="#{usuarioController.usuario.cpf}"/><br/>
-            E-mail: <p:inputText value="#{usuarioController.usuario.email}"/><br/>
-            Data de Nascimento:
-            <p:inputText value="#{usuarioController.usuario.dataNasc}" a:placeholder="dd/mm/yyyy" >  
+        
+        <h:form styleClass="form" class="usuarioForm">
+            <p:inputText placeholder="Nome" value="#{usuarioController.usuario.nome}"/><br/>
+            <p:inputText placeholder="CPF" value="#{usuarioController.usuario.cpf}"/><br/>
+            <p:inputText placeholder="Email" value="#{usuarioController.usuario.email}"/><br/>
+            <p:inputText value="#{usuarioController.usuario.dataNasc}" a:placeholder="Data de Nasc (dd/mm/yyyy)" >  
                 <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3"/>  
             </p:inputText>
+            <br/>
+            <p:inputText placeholder="Senha" type="password" value="#{usuarioController.usuario.senha}"/><br/>
 
-            Senha: <p:inputText type="password" value="#{usuarioController.usuario.senha}"/><br/>
-
-            <p:commandButton action="#{usuarioController.adicionarUsuario}" value="Inserir Novo Usuário"/>
-            <p:commandButton action="#{usuarioController.alterarUsuario}" value="Alterar Usuário"/>
+            <p:commandButton class="btn select" action="#{usuarioController.adicionarUsuario}" value="Inserir Novo Usuário"/>
+            <p:commandButton class="btn select" action="#{usuarioController.alterarUsuario}" value="Alterar Usuário"/>
             <br/>
 
            

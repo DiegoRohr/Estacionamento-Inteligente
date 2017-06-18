@@ -13,8 +13,17 @@ and open the template in the editor.
 * {
     font-family: 'Open Sans', sans-serif;
 }
+
+body {
+    background-color: #fafafa;
+}
+
 .loginBody {
     min-height: 800px;
+}
+
+input {
+    width: 50%;
 }
 
 .center {
@@ -124,7 +133,7 @@ and open the template in the editor.
     margin: 0 auto;
     padding-bottom: 50px;
     overflow: auto;
-    width: 80%;
+    max-width: 70%;
 
 
 }
@@ -148,7 +157,7 @@ p {
     margin: 10px 0;
     opacity: 0.8;
     padding: 4px 25px;
-    width: 450px;
+    width: 90%;
 
 
 
@@ -170,6 +179,7 @@ p {
     text-align: center;
     width: 30%;
     text-decoration: none;
+    text-shadow: none;
 
 }
 
@@ -212,3 +222,48 @@ p {
     margin: 0;
     padding: 0;
 }
+
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td {
+    border-style: none;
+}
+
+
+.ui-datatable thead th {
+    background: #358cce;
+    color: #ffffff;
+    border-radius: 0;
+    border: 0;
+    text-shadow: none;
+    
+}
+
+td {
+    text-align: center;
+}
+
+.table-responsive {
+    max-width: 95%;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+.ui-inputfield {
+    width: 50%;
+    margin: 1%;
+    height: 30px;
+}
+
+.usuarioForm {
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 5%;
+}
+
+.usuarioForm > .select {
+    width: 50%;
+    margin-bottom: 1%;
+    
+}
+
