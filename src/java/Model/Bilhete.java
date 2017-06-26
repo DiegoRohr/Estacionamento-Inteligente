@@ -118,7 +118,6 @@ public class Bilhete implements Serializable {
 
     @Override
     public int hashCode() {
-        System.out.println("hashhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh2");
         int hash = 5;
         hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
         hash = 59 * hash + Objects.hashCode(this.usuario);

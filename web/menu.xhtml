@@ -10,8 +10,10 @@
                 <p:submenu label="Bilhete" icon="ui-icon-document">
                     <p:menuitem value="Ver Bilhete" action="bilheteGerado" />
                     <p:separator />
-                    <p:menuitem value="Vagas Disponíveis" action="vagas" />
+                    <p:menuitem value="Ver Histórico" action="historico" />
                     <p:separator />
+                    <p:menuitem value="Vagas Disponíveis" action="vagas" />
+                    
                     
                     
                 </p:submenu>
@@ -20,11 +22,13 @@
                     <p:menuitem value="Gerenciar Usuários" action="gerenciarUsuario" icon="ui-icon-arrowreturnthick-1-w" />
 
                 </p:submenu>
+                
+                <p:menuitem value="Contato " action="contato" icon="ui-icon-mail-closed"/>
 
             <f:facet name="options">
                 <p:outputLabel style="margin-right:10px" value="Bem-vindo #{usuario.nome}"/>
                 <h:form rendered="#{usuarioController.verificarSessao()}" >		
-               <p:commandButton type="button" action="#{usuarioController.terminarSessao()}" value="Logout" icon="ui-icon-extlink" />
+               <p:commandButton action="#{usuarioController.terminarSessao()}" value="Logout" icon="ui-icon-extlink" />
                 </h:form>
             </f:facet>
 

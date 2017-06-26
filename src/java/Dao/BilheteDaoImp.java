@@ -100,6 +100,21 @@ public class BilheteDaoImp implements BilheteDao {
         return null;
         
     }
+    
+       // @Override
+    public List<Bilhete> list(Long id) {
+               Session session;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
+            session = HibernateUtil.getSessionFactory().openSession();
+        }
+        Transaction t = session.beginTransaction();
+        List lista = session.createQuery("from Bilhete where idUsuario = "+id).list();
+        t.commit();
+        System.out.println(lista);
+        return lista;
+    }
 
     @Override
     public void remove(Bilhete bilhete) {

@@ -88,7 +88,7 @@ public class UsuarioController {
         boolean estado;
 
         if (FacesContext.getCurrentInstance().getExternalContext()
-                .getSessionMap().get("usuario") == null) {
+                .getSessionMap().get("usuario")== null) {
             estado = false;
         } else {
             estado = true;

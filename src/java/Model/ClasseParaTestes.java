@@ -1,56 +1,56 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
+ * https://www.google.com/settings/security/lesssecureapps
  */
+
 package Model;
 
-import Utils.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.*;
-import Dao.*;
-import Controller.*;
-import static com.mchange.v2.log.MLog.config;
-import javax.faces.model.DataModel;
-import org.hibernate.cfg.AnnotationConfiguration;
-import Model.Bilhete;
-import Utils.HibernateUtil;
-import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-/**
- *
- * @author Eduardo
- */
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.mail.internet.MimeMessage;
 public class ClasseParaTestes {
-    
-    
 
-    public static void main(String[] args) {
-        
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        
-        Bilhete bilhete = new Bilhete();
-    Vaga vaga = new Vaga();
-    Usuario usuario = new Usuario();
-    
-   
-    bilhete.setVaga(vaga);
-    bilhete.setUsuario(usuario);
-    
+    public static void main(String args[]){
+        try{
+            String host ="smtp.live.com" ;
+            String user = "gremistadoente9@hotmail.com";
+            String pass = "udud91593139";
+            String to = "gremistadoente9@hotmail.com";
+            String from = "gremistadoente9@hotmail.com";
+            String subject = "Formulario de contato";
+            String messageText = "emailllll";
+            boolean sessionDebug = false;
 
-    vaga.setCodVaga("C10");
+            Properties props = System.getProperties();
 
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.required", "true");
 
-    usuario.setId(8);
-        session.save(bilhete);
-        t.commit();
-    
-    
-    
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            Session mailSession = Session.getDefaultInstance(props, null);
+            mailSession.setDebug(sessionDebug);
+            Message msg = new MimeMessage(mailSession);
+            msg.setFrom(new InternetAddress(from));
+            InternetAddress[] address = {new InternetAddress(to)};
+            msg.setRecipients(Message.RecipientType.TO, address);
+            msg.setSubject(subject); msg.setSentDate(new Date());
+            msg.setText(messageText);
 
-}
+           Transport transport=mailSession.getTransport("smtp");
+           transport.connect(host, user, pass);
+           transport.sendMessage(msg, msg.getAllRecipients());
+           transport.close();
+           System.out.println("message send successfully");
+        }catch(Exception ex)
+        {
+            System.out.println("Ocorreu um erro ao enviar o email: "+ex);
+        }
+
+    }
 }

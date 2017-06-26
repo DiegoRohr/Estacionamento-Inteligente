@@ -25,20 +25,20 @@ import Dao.HistoricoDaoImp;
 import Dao.VagaDao;
 import Dao.VagaDaoImp;
 import Model.Historico;
+import Model.Usuario;
 import Utils.HibernateUtil;
 import java.util.Date;
-
 
 /**
  *
  * @author thayseonofrio
  */
-
 //TO DO: Ao ser criado, o bilhete tem que ser adicionado à tabela Histórico, contendo a id do usuario e a id do bilhete
 //Depois da pra consultar pelo usuario os bilhetes que já teve, pra gerar relatórios 
 @ManagedBean
 @SessionScoped
-public class BilheteController{
+public class BilheteController {
+
     private Bilhete bilhete;
     private DataModel listaBilhetes;
     private EntityManager entityManager;
@@ -48,8 +48,15 @@ public class BilheteController{
             this.bilhete = new Bilhete();
         }
     }
-    
-    
+
+    public DataModel getListarBilhetes() {
+        Usuario user = new Usuario();
+        user = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        long id = user.getId();
+        List<Bilhete> lista = new BilheteDaoImp().list(id);
+        listaBilhetes = new ListDataModel(lista);
+        return listaBilhetes;
+    }
 
     public DataModel getListarUsuarios() {
         List<Bilhete> lista = new BilheteDaoImp().list();
@@ -87,12 +94,12 @@ public class BilheteController{
     public String adicionarBilhete() {
         BilheteDao dao = new BilheteDaoImp();
         bilhete.setDataHoraEmissao(new Date());
-        dao.save(bilhete);       
+        dao.save(bilhete);
         VagaDao vagaDao = new VagaDaoImp();
         Vaga vaga = bilhete.getVaga();
         vaga.setUtilizada(true);
         vagaDao.update(vaga);
-        
+
         //salvar no historico
         Historico historico = new Historico();
         HistoricoDao histDao = new HistoricoDaoImp();
@@ -107,7 +114,7 @@ public class BilheteController{
         dao.update(bilhete);
         return "index";
     }
-    
+
     public String finalizarBilhete() {
         BilheteDao dao = new BilheteDaoImp();
         bilhete.setDataHoraBaixa(new Date());
@@ -119,21 +126,20 @@ public class BilheteController{
         Vaga vaga = bilhete.getVaga();
         vaga.setUtilizada(false);
         vagaDao.update(vaga);
-        
-        
+
         return "bilheteFinalizado";
-    } 
-    
+    }
+
     public boolean bilheteExiste() {
-        if(this.bilhete.getId() == 0) {
+        if (this.bilhete.getId() == 0) {
             return false;
         }
         return true;
     }
-    
+
     public String limpar() {
         this.bilhete = new Bilhete();
         return "index";
     }
-    
+
 }

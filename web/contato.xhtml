@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Contato</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/estilo.css"></link>
+    </h:head>
+    <h:body>
+<ui:include src="menu.xhtml" />
+
+ 
+        
+        <h:form styleClass="form" class="usuarioForm">
+            
+            <h1>Contato</h1>
+            <p>Envie um email para contatoestacionamento@hotmail.com ou preencha o formulário a baixo</p><br/>
+            <p:inputText placeholder="Nome" value="#{contatoController.contato.nome}"/><br/>
+            <p:inputText placeholder="Email" value="#{contatoController.contato.email}"/><br/>
+            <p:inputText placeholder="Assunto" value="#{contatoController.contato.assunto}"/><br/>
+            <p:inputTextarea rows="10" style="height: 120px;" placeholder="Mensagem" autoResize="false" value="#{contatoController.contato.mensagem}"/><br/>
+            
+            <p:commandButton class="btn select" action="#{contatoController.enviaEmail}" value="Enviar" />
+
+           
+        </h:form>
+            
+
+    </h:body>
+</html>

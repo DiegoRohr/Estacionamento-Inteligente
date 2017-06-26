@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Gerenciador de Usuários</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/estilo.css"></link>
+    </h:head>
+    <h:body>
+        <ui:include src="menu.xhtml" />
+      
+       
+        <div class="table-responsive">
+        <p:dataTable tableStyleClass="table table-striped" var="bilhete" value="#{bilheteController.listarBilhetes}" customLangUrl="//cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json">
+          
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Vaga Utilizada"/>
+                </f:facet>
+                <h:outputText value="#{bilhete.vaga.codVaga}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Valor Pago"/>
+                </f:facet>
+                <h:outputText value="R$ #{bilhete.valorTotal}0" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Data de Emissão"/>
+                </f:facet>
+                <h:outputText value="#{bilhete.dataHoraEmissao}">
+                    <f:convertDateTime dateStyle="long" pattern="dd/MM/yyyy HH:mm" />
+                </h:outputText>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Data de Saída"/>
+                </f:facet>
+                <h:outputText value="#{bilhete.dataHoraBaixa}">
+                    <f:convertDateTime dateStyle="long" pattern="dd/MM/yyyy HH:mm" />
+                </h:outputText>
+            </p:column>
+            
+           
+        </p:dataTable>
+
+        </div>
+    </h:body>
+</html>

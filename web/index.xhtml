@@ -6,17 +6,23 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Usuários</title>
+        <title>Estacionamento Inteligente</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/estilo.css"></link>
     </h:head>
     <h:body>
         <ui:include src="menu.xhtml" />
 
-
-
-
+        <center>
+            <h:panelGroup rendered="#{param['erro'] eq false}">
+                <h1>Formulario enviado com sucesso!</h1>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{param['erro']}">
+                <h1>Ocorreu um erro ao enviar o formulário.</h1>
+            </h:panelGroup>
+        </center>
         <br/>
 
         <br />
-        
+
     </h:body>
 </html>
